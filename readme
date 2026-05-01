@@ -1,0 +1,4 @@
+Brief Introduction to the Problem
+
+Managing academic data in a university manually or using unstructured spreadsheets is inefficient and prone to errors. Faculty members face challenges in tracking student attendance, recording marks, calculating eligibility for exams, and generating results. Additionally, managing user access for administrators, lecturers, technical officers, and students is cumbersome without a centralized system.
+To address these challenges, we developed a database management system specifically for the Faculty of Technology at the University of Ruhuna. This system efficiently handles student details, attendance, marks, results, and eligibility verification, while providing secure access to different user roles. It ensures accurate record-keeping, reduces manual effort, and allows faculty and students to access necessary academic information quickly and reliably.
