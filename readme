@@ -2,3 +2,75 @@ Brief Introduction to the Problem
 
 Managing academic data in a university manually or using unstructured spreadsheets is inefficient and prone to errors. Faculty members face challenges in tracking student attendance, recording marks, calculating eligibility for exams, and generating results. Additionally, managing user access for administrators, lecturers, technical officers, and students is cumbersome without a centralized system.
 To address these challenges, we developed a database management system specifically for the Faculty of Technology at the University of Ruhuna. This system efficiently handles student details, attendance, marks, results, and eligibility verification, while providing secure access to different user roles. It ensures accurate record-keeping, reduces manual effort, and allows faculty and students to access necessary academic information quickly and reliably.
+
+---
+
+### Updated & Improved README
+
+# 🎓 University Academic Management System
+
+A comprehensive MySQL database system for managing university academic operations including students, lecturers, courses, marks, attendance, grades, and eligibility.
+
+## 📖 Project Overview
+
+This system is designed to efficiently manage all academic activities of a university. It ensures data integrity, reduces manual work, and provides accurate academic reports.
+
+**Key Features:**
+
+- Student registration and profile management
+- Course and Lecturer management
+- Attendance tracking with percentage calculation
+- Marks entry and automatic total calculation
+- Grade & GPA computation
+- Course eligibility checking based on attendance and CA marks
+- Role-based user permissions
+
+## 🗃️ Database Schema
+
+**Database Name**: `university_management_system`
+
+### 📑 Main Tables
+
+| Table               | Description                                         |
+| ------------------- | --------------------------------------------------- |
+| `Student`           | Student personal and registration details           |
+| `Lecturer`          | Lecturer information and department                 |
+| `Technical_Officer` | Technical staff details                             |
+| `Course_Unit`       | Course details, credits, and assigned lecturer      |
+| `Marks`             | Assignment, Mid, Quiz, Final and Total marks        |
+| `Grade`             | Final grades and grade points                       |
+| `Attendance`        | Daily attendance with percentage                    |
+| `Eligibility`       | Course eligibility status (Eligible / Not Eligible) |
+
+### 🔗 Relational Mapping (Relationships)
+
+- **Student → Marks** : One-to-Many (One student can have marks in many courses)
+- **Student → Attendance** : One-to-Many
+- **Student → Eligibility** : One-to-Many
+- **Student → Grade** : One-to-Many
+- **Course_Unit → Marks** : One-to-Many
+- **Course_Unit → Attendance** : One-to-Many
+- **Lecturer → Course_Unit** : One-to-Many (One lecturer can teach multiple courses)
+- **Technical_Officer** manages overall system (optional)
+
+**Normalization**: The database is designed in **3NF (Third Normal Form)**.
+
+## 🖼️ Diagrams
+
+- **ER Diagram** (Conceptual Design) → `documentation/ER_Diagram.png`
+- **Relational Diagram** (Logical Design) → `documentation/Relational_Diagram.png`
+
+## ⚙️ Business Logic
+
+- **Total Marks** = Assignment + Mid + Quiz + Final (Auto calculated using Trigger)
+- **Eligibility** = Attendance ≥ 80% AND CA Marks ≥ 40%
+- **GPA Calculation** = (Sum of Grade Point × Credit) / Total Credits
+
+## 🧰 How to Setup & Run
+
+### Step 1: Create Database
+
+```sql
+CREATE DATABASE IF NOT EXISTS university_management_system;
+USE university_management_system;
+```
