@@ -1,44 +1,49 @@
-use FacultyManagement;
-insert into students values
-    ('ICT001', 'Sara', '200417283718','sara@gmail.com', '0771299782','colombo','proper'),
-    ('ICT002', 'John', '200689251673','john@gmail.com', '0751368978','kandy','repeat'),
-    ('ICT003', 'Nimal','200496571315','nimal@gmail.com','0772126196','galle','proper'),
-    ('ICT004', 'Sunil','200412334754','sunil@gmail.com','0752364293','kegalle','repeat'),
-    ('ICT005', 'Kamal','200412223437','kamal@gmail.com','0752364297','Mannar','proper'),
-    ('ICT006', 'Nivetha','200431323733','nivetha@gmail.com','0761363946','kandy','proper'),
-    ('ICT007', 'Amna','200415222318','amna@gmail.com','0773213933','matara','proper'),
-    ('ICT008', 'Durga','200418327416','durga@gmail.com','0773363973','jaffna','repeat'),
-    ('ICT009', 'Thilini','200414222714','thilini@gmail.com','0743364171','Badulla','proper'),
-    ('ICT0010', 'Amila', '200413332361','amila@gmail.com','0752363975','Kalutara','proper'),
-    ('ICT0011', 'silva', '200467893710','silva@gmail.com', '0771556293','Gampaha','proper'),
-    ('ICT0012', 'Dilani','200413563311','dilani@gmail.com','0754364974','jaffna','repeat'),
-    ('ICT0013', 'Supun', '200463884312','supun@gmail.com', '0741358723','kegalle','repeat'),
-    ('ICT0014', 'Ishara','200417123732','ishara@gmail.com','0754363911','Ampara','proper'),
-    ('ICT0015', 'Perera','200413237173','perera@gmail.com','0771314779','Ratnapura','proper');
+USE FacultyManagement;
 
-insert into lecturers values
-   (1,'Dr.Nimal','nimal@gmail.com', '0778925711','ICT','PhD in Computer Science'),
-   (2,'Dr.Chamara','chamara@gmail.com', '0772225212','ICT','MSc in Software Engineering'),
-   (3,'Dr.Malini','malini@gmail.com', '0771225314','ICT','BSc in Information Technology'),
-   (4,'Dr.Ravindu','ravindu@gmail.com', '0741322271','ICT','MSc in Data Science'),
-   (5,'Dr.Ruwan','ruwan@gmail.com', '0771225313','ICT','PhD in Artificial Intelligence');
+-- Students
+INSERT INTO students VALUES
+('ICT001', 'Sara', '200417283718','sara@gmail.com', '0771299782','colombo','proper'),
+('ICT002', 'John', '200689251673','john@gmail.com', '0751368978','kandy','repeat'),
+('ICT003', 'Nimal','200496571315','nimal@gmail.com','0772126196','galle','proper'),
+('ICT004', 'Sunil','200412334754','sunil@gmail.com','0752364293','kegalle','repeat'),
+('ICT005', 'Kamal','200412223437','kamal@gmail.com','0752364297','Mannar','proper'),
+('ICT006', 'Nivetha','200431323733','nivetha@gmail.com','0761363946','kandy','proper'),
+('ICT007', 'Amna','200415222318','amna@gmail.com','0773213933','matara','proper'),
+('ICT008', 'Durga','200418327416','durga@gmail.com','0773363973','jaffna','repeat'),
+('ICT009', 'Thilini','200414222714','thilini@gmail.com','0743364171','Badulla','proper'),
+('ICT010', 'Amila', '200413332361','amila@gmail.com','0752363975','Kalutara','proper'),
+('ICT011', 'silva', '200467893710','silva@gmail.com', '0771556293','Gampaha','proper'),
+('ICT012', 'Dilani','200413563311','dilani@gmail.com','0754364974','jaffna','repeat'),
+('ICT013', 'Supun', '200463884312','supun@gmail.com', '0741358723','kegalle','repeat'),
+('ICT014', 'Ishara','200417123732','ishara@gmail.com','0754363911','Ampara','proper'),
+('ICT015', 'Perera','200413237173','perera@gmail.com','0771314779','Ratnapura','proper');
 
-insert into technical_officers values
-   (1,'saman','saman@gmail.com','0751238952','Networking Lab','Morning','5 years'),
-   (2,'pradeep','pradeep@gmail.com','0771232394','Hardware Lab','Morning','4 years'),
-   (3,'Jayasinge','jayasinge@gmail.com','0771237458','Multimedia Lab','Evening','3 years'),
-   (4,'Fernando','fernando@gmail.com','0752333393','Software Lab','Morning','4 years'),
-   (5,'Kumara','kumara@gmail.com','0771332951','Database Lab','Evening','2 years');
+-- Lecturers
+INSERT INTO lecturers VALUES
+(1,'Dr.Nimal','nimal@gmail.com', '0778925711','ICT','PhD in Computer Science'),
+(2,'Dr.Chamara','chamara@gmail.com', '0772225212','ICT','MSc in Software Engineering'),
+(3,'Dr.Malini','malini@gmail.com', '0771225314','ICT','BSc in Information Technology'),
+(4,'Dr.Ravindu','ravindu@gmail.com', '0741322271','ICT','MSc in Data Science'),
+(5,'Dr.Ruwan','ruwan@gmail.com', '0771225313','ICT','PhD in Artificial Intelligence');
 
-insert into courses values
-    ('ICT1212', 'Programming', 3,'theory',1),
-    ('ICT1222','Database',3,'practical',2),
-    ('ICT1232','Networking',2,'Theory',3),
-    ('ICT1242','Web Dev',3,'practical',4),
-    ('ICT1252','Maths',2,'Theory',5);
+-- Technical Officers
+INSERT INTO technical_officers VALUES
+(1,'saman','saman@gmail.com','0751238952','Networking Lab','Morning','5 years'),
+(2,'pradeep','pradeep@gmail.com','0771232394','Hardware Lab','Morning','4 years'),
+(3,'Jayasinge','jayasinge@gmail.com','0771237458','Multimedia Lab','Evening','3 years'),
+(4,'Fernando','fernando@gmail.com','0752333393','Software Lab','Morning','4 years'),
+(5,'Kumara','kumara@gmail.com','0771332951','Database Lab','Evening','2 years');
 
-INSERT INTO attendance (reg_no,course_code,type,week,status) VALUES
+-- Courses (type corrected to lowercase)
+INSERT INTO courses VALUES
+('ICT1212', 'Programming', 3, 'theory', 1),
+('ICT1222', 'Database', 3, 'practical', 2),
+('ICT1232', 'Networking', 2, 'theory', 3),
+('ICT1242', 'Web Dev', 3, 'practical', 4),
+('ICT1252', 'Maths', 2, 'theory', 5);
 
+-- Attendance (Full data)
+INSERT INTO attendance (reg_no, course_code, type, week, status) VALUES
 ('ICT001','ICT1212','THEORY',1,'PRESENT'),
 ('ICT001','ICT1212','THEORY',2,'PRESENT'),
 ('ICT001','ICT1212','THEORY',3,'PRESENT'),
@@ -279,7 +284,8 @@ INSERT INTO attendance (reg_no,course_code,type,week,status) VALUES
 ('ICT015','ICT1212','THEORY',14,'PRESENT'),
 ('ICT015','ICT1212','THEORY',15,'ABSENT');
 
-INSERT INTO marks (reg_no,course_code,type,marks) values
+-- Marks
+INSERT INTO marks (reg_no, course_code, type, marks) VALUES
 ('ICT001','ICT1212','QUIZ',90),
 ('ICT001','ICT1212','ASSESSMENT',88),
 ('ICT001','ICT1212','MID_THEORY',85),
@@ -385,20 +391,20 @@ INSERT INTO marks (reg_no,course_code,type,marks) values
 ('ICT015','ICT1212','FINAL_THEORY',50),
 ('ICT015','ICT1212','FINAL_PRACTICAL',47);
 
-INSERT INTO results (reg_no,course_code,final_marks,grade,gpa) VALUES
-
-('ICT001','ICT1212',90,'A+',4.0),
-('ICT002','ICT1212',78,'A',3.7),
+-- Results
+INSERT INTO results (reg_no, course_code, final_marks, grade, gpa) VALUES
+('ICT001','ICT1212',90.00,'A+',4.0),
+('ICT002','ICT1212',78.00,'A',3.7),
 ('ICT003','ICT1212',NULL,'MC',NULL),
-('ICT004','ICT1212',48,'S',1.0),
+('ICT004','ICT1212',48.00,'S',1.0),
 ('ICT005','ICT1212',NULL,'MC',NULL),
-('ICT006','ICT1212',83,'A',3.7),
-('ICT007','ICT1212',70,'B',3.0),
-('ICT008','ICT1212',90,'A+',4.0),
-('ICT009','ICT1212',65,'B',3.0),
-('ICT010','ICT1212',78,'A',3.7),
-('ICT011','ICT1212',62,'C',2.0),
-('ICT012','ICT1212',85,'A+',4.0),
-('ICT013','ICT1212',58,'C',2.0),
-('ICT014','ICT1212',91,'A+',4.0),
-('ICT015','ICT1212',47,'S',1.0);
+('ICT006','ICT1212',83.00,'A',3.7),
+('ICT007','ICT1212',70.00,'B',3.0),
+('ICT008','ICT1212',90.00,'A+',4.0),
+('ICT009','ICT1212',65.00,'B',3.0),
+('ICT010','ICT1212',78.00,'A',3.7),
+('ICT011','ICT1212',62.00,'C',2.0),
+('ICT012','ICT1212',85.00,'A+',4.0),
+('ICT013','ICT1212',58.00,'C',2.0),
+('ICT014','ICT1212',91.00,'A+',4.0),
+('ICT015','ICT1212',47.00,'S',1.0);
