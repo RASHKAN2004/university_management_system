@@ -1,3 +1,4 @@
+use FacultyManagement;
 insert into students values
     ('ICT001', 'Sara', '200417283718','sara@gmail.com', '0771299782','colombo','proper'),
     ('ICT002', 'John', '200689251673','john@gmail.com', '0751368978','kandy','repeat'),
