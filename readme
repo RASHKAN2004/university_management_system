@@ -27,7 +27,7 @@ This system is designed to efficiently manage all academic activities of a unive
 
 ## 🗃️ Database Schema
 
-**Database Name**: `university_management_system`
+**Database Name**: `FacultyManagement`
 
 ### 📑 Main Tables
 
@@ -71,6 +71,6 @@ This system is designed to efficiently manage all academic activities of a unive
 ### Step 1: Create Database
 
 ```sql
-CREATE DATABASE IF NOT EXISTS university_management_system;
-USE university_management_system;
+CREATE DATABASE IF NOT EXISTS FacultyManagement;
+USE FacultyManagement;
 ```
