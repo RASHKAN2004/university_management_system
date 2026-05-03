@@ -37,7 +37,7 @@ insert into courses values
     ('ICT1242','Web Dev',3,'practical',4),
     ('ICT1252','Maths',2,'Theory',5);
 
-INSERT INTO attendance (reg_no,course_code,session_type,week,status) VALUES
+INSERT INTO attendance (reg_no,course_code,type,week,status) VALUES
 
 ('ICT001','ICT1212','THEORY',1,'PRESENT'),
 ('ICT001','ICT1212','THEORY',2,'PRESENT'),
