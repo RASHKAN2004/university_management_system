@@ -43,10 +43,9 @@ create table attendance(
   attendance_id int primary key auto_increment,
   reg_no varchar(10),
   course_code varchar(15),
-  session_date date,
-  type enum('theory', 'practical'),
-  status enum('present', 'absent','medical'),
-  hours int,
+  type enum('THEORY','PRACTICAL'),
+  week int,
+  status enum('PRESENT','ABSENT','MEDICAL'),
   foreign key(reg_no) references students(reg_no),
   foreign key(course_code) references courses(course_code)
 );
@@ -55,14 +54,21 @@ create table marks(
   mark_id int primary key auto_increment,
   reg_no varchar(10),
   course_code varchar(15),
-  quiz float,
-  assignment float,
-  mid_theory float,
-  mid_practical float,
-  final_theory float,
-  final_practical float,
-  medical enum('yes','no') default 'no',
+  type ENUM('QUIZ','ASSESSMENT','MID_THEORY','MID_PRACTICAL','FINAL_THEORY','FINAL_PRACTICAL'),
+  marks int,
   foreign key(reg_no) references students(reg_no),
   foreign key(course_code) references courses(course_code)    
+);
+
+
+CREATE TABLE results (
+    result_id int primary key auto_increment,
+    reg_no varchar(20),
+    course_code varchar(10),
+    final_marks decimal(5,2),
+    grade varchar(5),
+    gpa decimal(3,2),
+    foreign key(reg_no) references students(reg_no),
+  foreign key(course_code) references courses(course_code)  
 );
 
