@@ -5,21 +5,21 @@ insert into Admin values ('A01', 'Sumith Perera', 'admin@tech.lk', '0112223334',
 insert into Dean values ('D01', 'Prof. J. Silva', 'dean@tech.lk', '0112224445', 'ICT Dept', '2021-05-10');
 
 insert into students values
-    ('TG/1', 'Sara', '200417283718','sara@gmail.com', '0771299782','colombo','proper'),
-    ('TG/2', 'John', '200689251673','john@gmail.com', '0751368978','kandy','repeat'),
-    ('TG/3', 'Nimal','200496571315','nimal@gmail.com','0772126196','galle','proper'),
-    ('TG/4', 'Sunil','200412334754','sunil@gmail.com','0752364293','kegalle','repeat'),
-    ('TG/5', 'Kamal','200412223437','kamal@gmail.com','0752364297','Mannar','proper'),
-    ('TG/6', 'Nivetha','200431323733','nivetha@gmail.com','0761363946','kandy','proper'),
-    ('TG/7', 'Amna','200415222318','amna@gmail.com','0773213933','matara','proper'),
-    ('TG/8', 'Durga','200418327416','durga@gmail.com','0773363973','jaffna','repeat'),
-    ('TG/9', 'Thilini','200414222714','thilini@gmail.com','0743364171','Badulla','proper'),
-    ('TG/10', 'Amila', '200413332361','amila@gmail.com','0752363975','Kalutara','proper'),
-    ('TG/11', 'silva', '200467893710','silva@gmail.com', '0771556293','Gampaha','proper'),
-    ('TG/12', 'Dilani','200413563311','dilani@gmail.com','0754364974','jaffna','repeat'),
-    ('TG/13', 'Supun', '200463884312','supun@gmail.com', '0741358723','kegalle','repeat'),
-    ('TG/14', 'Ishara','200417123732','ishara@gmail.com','0754363911','Ampara','proper'),
-    ('TG/15', 'Perera','200413237173','perera@gmail.com','0771314779','Ratnapura','proper');
+    ('TG/1000', 'Sara', '200417283718','sara@gmail.com', '0771299782','colombo','proper'),
+    ('TG/1010', 'John', '200689251673','john@gmail.com', '0751368978','kandy','repeat'),
+    ('TG/1020', 'Nimal','200496571315','nimal@gmail.com','0772126196','galle','proper'),
+    ('TG/1030', 'Sunil','200412334754','sunil@gmail.com','0752364293','kegalle','repeat'),
+    ('TG/1040', 'Kamal','200412223437','kamal@gmail.com','0752364297','Mannar','proper'),
+    ('TG/1050', 'Nivetha','200431323733','nivetha@gmail.com','0761363946','kandy','proper'),
+    ('TG/1060', 'Amna','200415222318','amna@gmail.com','0773213933','matara','proper'),
+    ('TG/1070', 'Durga','200418327416','durga@gmail.com','0773363973','jaffna','repeat'),
+    ('TG/1080', 'Thilini','200414222714','thilini@gmail.com','0743364171','Badulla','proper'),
+    ('TG/1090', 'Amila', '200413332361','amila@gmail.com','0752363975','Kalutara','proper'),
+    ('TG/1100', 'silva', '200467893710','silva@gmail.com', '0771556293','Gampaha','proper'),
+    ('TG/1110', 'Dilani','200413563311','dilani@gmail.com','0754364974','jaffna','repeat'),
+    ('TG/1120', 'Supun', '200463884312','supun@gmail.com', '0741358723','kegalle','repeat'),
+    ('TG/1130', 'Ishara','200417123732','ishara@gmail.com','0754363911','Ampara','proper'),
+    ('TG/1140', 'Perera','200413237173','perera@gmail.com','0771314779','Ratnapura','proper');
 
 insert into lecturers values
    (1,'Dr.Nimal','nimal@gmail.com', '0778925711','ICT','PhD in Computer Science'),
