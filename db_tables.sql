@@ -1,6 +1,23 @@
 create database FacultyManagement;
 use FacultyManagement;
 
+create table Admin (
+    AdminID varchar(10) primary key,
+    Name varchar(50),
+    Email varchar(50),
+    ContactNo varchar(50),
+    OfficeRoom varchar(50),
+    HiredDate date
+);
+create table Dean (
+    DeanID varchar(10) primary key,
+    Name varchar(50),
+    Email varchar(50),
+    ContactNo varchar(50),
+    Specialization varchar(50),
+    AppointmentDate date
+);
+
 create table students(
  reg_no varchar(10) primary key, 
  name varchar(50),
