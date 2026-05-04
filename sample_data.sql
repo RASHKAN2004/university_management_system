@@ -1,3 +1,7 @@
+insert into Admin values ('A01', 'Sumith Perera', 'admin@tech.lk', '0112223334', 'Room 101', '2020-01-01');
+
+insert into Dean values ('D01', 'Prof. J. Silva', 'dean@tech.lk', '0112224445', 'ICT Dept', '2021-05-10');
+
 insert into students values
     ('TG/1', 'Sara', '200417283718','sara@gmail.com', '0771299782','colombo','proper'),
     ('TG/2', 'John', '200689251673','john@gmail.com', '0751368978','kandy','repeat'),
