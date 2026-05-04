@@ -2294,7 +2294,7 @@ INSERT INTO attendance (reg_no, course_code,week, type, status) VALUES
 ('TG/1140','ICT1252',15,'theory','present'),
 ('TG/1140','ICT1252',15,'practical','present');
 
-INSERT INTO marks (reg_no, course_code, assignment, mid_exam, practical, final_exam) VALUES
+INSERT INTO marks (reg_no, course_code, assignment, mid_exam, quiz, final_exam) VALUES
 ('TG/1000','ICT1212',70,52,67,77),
 ('TG/1000','ICT1222',50,75,63,78),
 ('TG/1000','ICT1232',86,62,95,60),

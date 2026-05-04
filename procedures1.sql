@@ -125,7 +125,90 @@ DELIMITER ;
 
 
 
--- MARKS
+                                             -- MARKS
+
+
+--	CA for whole batch By giving course code 
+
+DELIMITER //
+
+create procedure CA_whole_batch(IN in_course_code VARCHAR(15))
+BEGIN
+    
+    
+    SELECT 
+        m.reg_no AS 'Registration No',
+        s.name AS 'Student Name',
+        
+        -- separate marks
+        m.assignment AS 'Assignment Marks',
+        m.mid_exam AS 'Mid-Exam Marks',
+        m.quiz AS 'Quiz Marks',
+        
+        -- CA final marks for 50
+        ROUND(
+            ((m.assignment / 100.0) * 10) + 
+            ((m.mid_exam / 100.0) * 20) + 
+            ((m.quiz / 100.0) * 20), 2
+        ) AS 'Weighted Total CA',
+        
+        
+        -- eligiblity check
+        CASE 
+            WHEN (((m.assignment / 100.0) * 10) + 
+                  ((m.mid_exam / 100.0) * 20) + 
+                  ((m.quiz / 100.0) * 20)) >= 20 THEN 'Eligible'
+            ELSE 'Not Eligible'
+        END AS 'Eligibility'
+        
+    FROM marks m
+    JOIN students s ON m.reg_no = s.reg_no
+    WHERE m.course_code = in_course_code
+    ORDER BY m.reg_no ASC;
+END //
+
+DELIMITER ;
+--(sample output) call CA_whole_batch('ICT1232');
+
+
+
+--view CA marks details  By giving course code and registration no
+
+DELIMITER //
+
+CREATE PROCEDURE CA_indi_with_course(IN in_reg_no VARCHAR(10), IN in_course_code VARCHAR(15)
+)
+BEGIN
+    SELECT 
+        s.reg_no AS 'Registration No',
+        s.name AS 'Student Name',
+        c.name AS 'Course Name',
+        
+        -- CA calculation
+        ROUND(
+            ((m.assignment / 100.0) * 10) + 
+            ((m.mid_exam / 100.0) * 20) + 
+            ((m.quiz / 100.0) * 20), 2
+        ) AS 'Total CA Marks',
+        
+      --elgibility check
+        CASE 
+            WHEN (((m.assignment / 100.0) * 10) + 
+                  ((m.mid_exam / 100.0) * 20) + 
+                  ((m.quiz / 100.0) * 20)) >= 20 THEN 'Eligible'
+            ELSE 'Not Eligible'
+        END AS 'Eligibility'
+        
+    FROM marks m
+    JOIN students s ON m.reg_no = s.reg_no
+    JOIN courses c ON m.course_code = c.course_code
+    WHERE m.reg_no = in_reg_no 
+    AND m.course_code = in_course_code;
+END //
+
+DELIMITER ;
+
+--(sample output) call CA_indi_with_course('TG/1030','ICT1232');
 
 
 

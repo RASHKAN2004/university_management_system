@@ -74,7 +74,7 @@ create table marks(
   course_code varchar(15),
   assignment int,
   mid_exam int,
-  practical int, 
+  quiz int, 
   final_exam int,
   foreign key(reg_no) references students(reg_no),
   foreign key(course_code) references courses(course_code)    
