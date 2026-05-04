@@ -187,5 +187,58 @@ DELIMITER ;
 
 
 --grading view
+DELIMITER //
 
+CREATE PROCEDURE CalculateGrade(
+    IN p_assignment INT,
+    IN p_mid_exam INT,
+    IN p_practical INT,
+    IN p_final_exam INT,
+    IN p_medical_ca BOOLEAN,
+    IN p_medical_mid BOOLEAN,
+    IN p_medical_final BOOLEAN,
+    OUT p_final_marks DECIMAL(5,2),
+    OUT p_grade VARCHAR(5),
+    OUT p_gpa DECIMAL(3,2)
+)
+BEGIN
+    DECLARE ca_marks DECIMAL(5,2);
+    DECLARE final_marks DECIMAL(5,2);
+    DECLARE total DECIMAL(5,2);
+
+    IF p_medical_ca OR p_medical_mid OR p_medical_final THEN
+        SET p_final_marks = NULL;
+        SET p_grade = 'MC';
+        SET p_gpa = 0.00;
+
+    ELSE
+        SET ca_marks = 
+            ((COALESCE(p_assignment,0)/100)*10) +
+            ((COALESCE(p_mid_exam,0)/100)*20) +
+            ((COALESCE(p_practical,0)/100)*20);
+
+        SET final_marks = (COALESCE(p_final_exam,0)/100)*50;
+
+        SET total = ca_marks + final_marks;
+
+        SET p_final_marks = total;
+
+        CASE
+            WHEN total >= 85 THEN SET p_grade = 'A+'; SET p_gpa = 4.00;
+            WHEN total >= 75 THEN SET p_grade = 'A';  SET p_gpa = 4.00;
+            WHEN total >= 70 THEN SET p_grade = 'A-'; SET p_gpa = 3.70;
+            WHEN total >= 65 THEN SET p_grade = 'B+'; SET p_gpa = 3.30;
+            WHEN total >= 60 THEN SET p_grade = 'B';  SET p_gpa = 3.00;
+            WHEN total >= 55 THEN SET p_grade = 'B-'; SET p_gpa = 2.70;
+            WHEN total >= 50 THEN SET p_grade = 'C+'; SET p_gpa = 2.30;
+            WHEN total >= 45 THEN SET p_grade = 'C';  SET p_gpa = 2.00;
+            WHEN total >= 40 THEN SET p_grade = 'C-'; SET p_gpa = 1.70;
+            WHEN total >= 35 THEN SET p_grade = 'D';  SET p_gpa = 1.30;
+            ELSE SET p_grade = 'E'; SET p_gpa = 0.00;
+        END CASE;
+
+    END IF;
+END //
+
+DELIMITER ;
 
