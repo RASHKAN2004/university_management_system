@@ -1,3 +1,5 @@
+use FacultyManagement;
+
 insert into Admin values ('A01', 'Sumith Perera', 'admin@tech.lk', '0112223334', 'Room 101', '2020-01-01');
 
 insert into Dean values ('D01', 'Prof. J. Silva', 'dean@tech.lk', '0112224445', 'ICT Dept', '2021-05-10');
