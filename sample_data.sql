@@ -204,6 +204,8 @@ INSERT INTO attendance (reg_no, course_code, type, week, status) VALUES
 ('ICT010','ICT1212','THEORY',14,'PRESENT'),
 ('ICT010','ICT1212','THEORY',15,'PRESENT'),
 
+
+
 ('ICT011','ICT1212','THEORY',1,'ABSENT'),
 ('ICT011','ICT1212','THEORY',2,'ABSENT'),
 ('ICT011','ICT1212','THEORY',3,'PRESENT'),
