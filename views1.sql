@@ -41,3 +41,33 @@ group by reg_no, course_code, type;
 
 
 --MARKS
+
+
+--see the final marks for whole batch as view
+
+Create View Batch_Final_Marks AS
+SELECT 
+    m.course_code AS 'Course Code',
+    m.reg_no AS 'Registration No',
+    s.name AS 'Student Name',
+    
+    -- calculate total CA
+    ROUND(
+        ((m.assignment / 100.0) * 10) + 
+        ((m.mid_exam / 100.0) * 20) + 
+        ((m.quiz / 100.0) * 20), 2
+    ) AS 'CA_Total',
+    
+    -- FFinal Marks
+    ROUND((m.final_exam / 100.0) * 50, 2) AS 'Final Exam Marks',
+    
+    -- Grand Total (CA + Final Exam)
+    ROUND(
+        (((m.assignment / 100.0) * 10) + ((m.mid_exam / 100.0) * 20) + ((m.quiz / 100.0) * 20)) + 
+        ((m.final_exam / 100.0) * 50), 2
+    ) AS 'Total Marks'
+    
+FROM marks m
+JOIN students s ON m.reg_no = s.reg_no;
+
+--(sample output) SELECT * FROM `Batch_Final_Marks`;
