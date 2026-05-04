@@ -241,4 +241,82 @@ BEGIN
 END //
 
 DELIMITER ;
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--Process Student Results for a Course
+DELIMITER //
 
+CREATE PROCEDURE ProcessStudentResult(
+    IN p_reg_no VARCHAR(10),
+    IN p_course_code VARCHAR(15)
+)
+BEGIN
+    DECLARE v_assignment INT DEFAULT 0;
+    DECLARE v_mid INT DEFAULT 0;
+    DECLARE v_practical INT DEFAULT 0;
+    DECLARE v_final INT DEFAULT 0;
+
+    DECLARE v_medical_ca BOOLEAN DEFAULT FALSE;
+    DECLARE v_medical_mid BOOLEAN DEFAULT FALSE;
+    DECLARE v_medical_final BOOLEAN DEFAULT FALSE;
+
+    DECLARE v_final_marks DECIMAL(5,2);
+    DECLARE v_grade VARCHAR(5);
+    DECLARE v_gpa DECIMAL(3,2);
+
+    DECLARE v_student_status ENUM('proper','repeat','suspended');
+
+    -- GET MARKS 
+
+    SELECT 
+        COALESCE(assignment,0), 
+        COALESCE(mid_exam,0), 
+        COALESCE(practical,0), 
+        COALESCE(final_exam,0)
+    INTO 
+        v_assignment, v_mid, v_practical, v_final
+    FROM marks 
+    WHERE reg_no = p_reg_no 
+      AND course_code = p_course_code
+    LIMIT 1;
+
+    --  MEDICAL CHECK
+    -- For now default FALSE (you can later connect medical table)
+
+    SET v_medical_ca = FALSE;
+    SET v_medical_mid = FALSE;
+    SET v_medical_final = FALSE;
+
+    --  CALCULATE GRADE (USES YOUR FIXED PROCEDURE)
+    CALL CalculateGrade(
+        v_assignment, v_mid, v_practical, v_final,
+        v_medical_ca, v_medical_mid, v_medical_final,
+        v_final_marks, v_grade, v_gpa
+    );
+
+    --  STUDENT STATUS RULES
+    SELECT status 
+    INTO v_student_status 
+    FROM students 
+    WHERE reg_no = p_reg_no
+    LIMIT 1;
+
+    IF v_student_status = 'suspended' THEN
+        SET v_grade = 'WH';
+        SET v_gpa = 0.00;
+
+    ELSEIF v_student_status = 'repeat' AND v_gpa > 2.00 THEN
+        SET v_grade = 'C';   -- Max grade for repeat
+        SET v_gpa = 2.00;
+    END IF;
+
+    -- 5. INSERT / UPDATE RESULTS
+    INSERT INTO results (reg_no, course_code, final_marks, grade, gpa)
+    VALUES (p_reg_no, p_course_code, v_final_marks, v_grade, v_gpa)
+    ON DUPLICATE KEY UPDATE 
+        final_marks = VALUES(final_marks),
+        grade = VALUES(grade),
+        gpa = VALUES(gpa);
+
+END //
+
+DELIMITER ;
