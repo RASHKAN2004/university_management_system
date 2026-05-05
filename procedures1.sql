@@ -350,6 +350,13 @@ END //
 DELIMITER ;
 
 
+
+
+
+
+
+
+
 --Process Student Results for a Course
 
 
@@ -432,6 +439,66 @@ END //
 DELIMITER ;
 
 --CALL ProcessStudentResult('TG/1000','ICT1212');
+
+
+
+
+
+
+
+
+
+
+
+--way to see sgpa and cgpa for a student
+DELIMITER //
+
+CREATE PROCEDURE CalculateSGPA_CGPA(
+    IN p_reg_no VARCHAR(10),
+    IN p_semester INT  -- NULL = CGPA, otherwise SGPA
+)
+BEGIN
+    DECLARE v_total_credits INT DEFAULT 0;
+    DECLARE v_weighted_sum DECIMAL(10,2) DEFAULT 0;
+
+    -- SGPA (Semester-wise)
+    IF p_semester IS NOT NULL THEN
+
+        SELECT 
+            SUM(r.gpa * c.credits),
+            SUM(c.credits)
+        INTO v_weighted_sum, v_total_credits
+        FROM results r
+        JOIN courses c ON r.course_code = c.course_code
+        WHERE r.reg_no = p_reg_no
+          AND c.semester = p_semester;
+
+    -- CGPA (Overall)
+    ELSE
+
+        SELECT 
+            SUM(r.gpa * c.credits),
+            SUM(c.credits)
+        INTO v_weighted_sum, v_total_credits
+        FROM results r
+        JOIN courses c ON r.course_code = c.course_code
+        WHERE r.reg_no = p_reg_no;
+
+    END IF;
+
+    -- FINAL OUTPUT 
+    SELECT 
+        p_reg_no AS reg_no,
+        IFNULL(v_total_credits, 0) AS total_credits,
+        CASE 
+            WHEN v_total_credits > 0 
+            THEN ROUND(v_weighted_sum / v_total_credits, 2)
+            ELSE 0.00
+        END AS SGPA_CGPA;
+
+END //
+
+DELIMITER ;
  
 
 
