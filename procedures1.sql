@@ -388,14 +388,14 @@ BEGIN
       AND course_code = p_course_code
     LIMIT 1;
 
-    -- MEDICAL CHECK (CUSTOMIZE IF YOU HAVE TABLE)
-    -- For now default FALSE (you can later connect medical table)
+    -- MEDICAL CHECK 
+    -- For now default FALSE 
 
     SET v_medical_ca = FALSE;
     SET v_medical_mid = FALSE;
     SET v_medical_final = FALSE;
 
-    --  CALCULATE GRADE (USES YOUR FIXED PROCEDURE)
+    --  CALCULATE GRADE
 
     CALL CalculateGrade(
         v_assignment, v_mid, v_practical, v_final,
