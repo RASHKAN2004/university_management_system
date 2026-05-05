@@ -4,10 +4,10 @@ DELIMITER //
 
 create procedure attendance_per_course(IN in_course_code VARCHAR(15))
 BEGIN
- SELECT 
-      s.reg_no AS 'Registration No',
+ select 
+      s.reg_no as 'Registration No',
         
-      COUNT(CASE WHEN a.status = 'present' THEN 1 END) AS 'Total Days Present',
+      COUNT(CASE when a.status = 'present' then 1 END) as 'Total Days Present',
         
        ROUND(
             (COUNT(CASE WHEN a.status = 'present' THEN 1 END) / 
@@ -17,21 +17,21 @@ BEGIN
         
         -- eligible if >=80
         CASE 
-            WHEN (COUNT(CASE WHEN a.status = 'present' THEN 1 END) / 
-                 (SELECT COUNT(DISTINCT week, type) FROM attendance WHERE course_code = in_course_code)) 
-                 * 100 >= 80 THEN 'Eligible'
-            ELSE 'Not Eligible'
-        END AS 'Eligibility'
+            when (COUNT(CASE when a.status = 'present' then 1 end) / 
+                 (select COUNT(DISTINCT week, type) from attendance where course_code = in_course_code)) 
+                 * 100 >= 80 then'Eligible'
+            else 'Not Eligible'
+        END as 'Eligibility'
         
-    FROM students s
-    JOIN attendance a ON s.reg_no = a.reg_no
-    WHERE a.course_code = in_course_code
+    from students s
+    join attendance a ON s.reg_no = a.reg_no
+    where a.course_code = in_course_code
     GROUP BY s.reg_no;
 END //
 
 DELIMITER ;
 
---(sample output)
+--(sample output) call attendance_per_course('ICT1242');
 
 
 --view attendance per person 
@@ -40,17 +40,17 @@ DELIMITER //
 
 create procedure student_attendance(IN in_reg_no VARCHAR(10))
 BEGIN
-    SELECT 
+    select 
         a.course_code AS 'Course Code',
         c.name AS 'Course Name',
         
         -- total lectures
-        (SELECT COUNT(DISTINCT week, type) 
-         FROM attendance 
-         WHERE course_code = a.course_code) AS 'Total lectures',
+        (select COUNT(distinct week, type) 
+         from attendance 
+         where course_code = a.course_code) AS 'Total lectures',
         
     
-        COUNT(CASE WHEN a.status = 'present' THEN 1 END) AS 'Present days',
+        COUNT(CASE when a.status = 'present' THEN 1 END) AS 'Present days',
         
         ROUND(
             (COUNT(CASE WHEN a.status = 'present' THEN 1 END) / 
@@ -74,7 +74,7 @@ END //
 
 DELIMITER ;
 
---(sample output)
+--(sample output) call student_attendance('TG/1030');
 
 --view attendance per person with course code
 
@@ -150,7 +150,7 @@ BEGIN
             ((m.assignment / 100.0) * 10) + 
             ((m.mid_exam / 100.0) * 20) + 
             ((m.quiz / 100.0) * 20), 2
-        ) AS 'Weighted Total CA',
+        ) AS 'Total CA Marks',
         
         
         -- eligiblity check
@@ -176,8 +176,7 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE CA_indi_with_course(IN in_reg_no VARCHAR(10), IN in_course_code VARCHAR(15)
-)
+CREATE PROCEDURE CA_indi_with_course(IN in_reg_no VARCHAR(10), IN in_course_code VARCHAR(15))
 BEGIN
     SELECT 
         s.reg_no AS 'Registration No',
@@ -189,20 +188,20 @@ BEGIN
             ((m.assignment / 100.0) * 10) + 
             ((m.mid_exam / 100.0) * 20) + 
             ((m.quiz / 100.0) * 20), 2
-        ) AS 'Total CA Marks',
-        
-      --elgibility check
+        ) AS 'Total CA Marks', 
+
+      -- eligibility check
         CASE 
-            WHEN (((m.assignment / 100.0) * 10) + 
+            when (((m.assignment / 100.0) * 10) + 
                   ((m.mid_exam / 100.0) * 20) + 
                   ((m.quiz / 100.0) * 20)) >= 20 THEN 'Eligible'
-            ELSE 'Not Eligible'
+            else 'Not Eligible'
         END AS 'Eligibility'
         
-    FROM marks m
-    JOIN students s ON m.reg_no = s.reg_no
-    JOIN courses c ON m.course_code = c.course_code
-    WHERE m.reg_no = in_reg_no 
+    from marks m
+    join students s ON m.reg_no = s.reg_no
+    join courses c ON m.course_code = c.course_code
+    where m.reg_no = in_reg_no 
     AND m.course_code = in_course_code;
 END //
 
@@ -247,7 +246,7 @@ END //
 
 DELIMITER ;
 
---(sample output) call GetStudentFinalMarksByRegNo('TG/1010');
+--(sample output) call FinalMarks_individual('TG/1010');
 
 
 --see if student/s are eligible according to the criteria of CA to sit for the final exam
@@ -263,7 +262,7 @@ BEGIN
         
         -- Attendance calculation
         ROUND((COUNT(CASE WHEN a.status = 'present' THEN 1 END) / 
-            (SELECT COUNT(DISTINCT week, type) FROM attendance WHERE course_code = input_course_code)) * 100, 2) AS 'Attendance',
+            (SELECT COUNT(DISTINCT week, type) FROM attendance WHERE course_code = in_course_code)) * 100, 2) AS 'Attendance',
             
         -- 2. CA Marks Calculation 
         ROUND(((m.assignment/100.0)*10) + ((m.mid_exam/100.0)*20) + ((m.quiz/100.0)*20), 2) AS 'CA Marks',
@@ -291,6 +290,8 @@ END //
 DELIMITER ;
 
 --(sample outpu ) call ExamEligibility_check('ICT1232');
+
+
 
 --grading view
 DELIMITER //

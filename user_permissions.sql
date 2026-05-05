@@ -60,5 +60,3 @@ SHOW GRANTS FOR 'dean'@'localhost';
 SHOW GRANTS FOR 'lecturer'@'localhost';
 SHOW GRANTS FOR 'technical_officer'@'localhost';
 SHOW GRANTS FOR 'student'@'localhost';
-
-SELECT user, host FROM mysql.user WHERE user IN ('admin','dean','lecturer','technical_officer','student');
